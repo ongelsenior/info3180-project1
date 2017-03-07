@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-success">
+                <ul>
+                    {% for message in messages%}
+                        <li>{{message}}</li>
+                    {% endfor%} 
+                </ul>
+            </div>
+        {%endif%}
+    {% endwith%}
+</div>
+<h1 class="page-header">Flask User Profile System</h1>
+
+<p class="lead">This is the presentation of Ongel Senior's Project 1 <br>
+using Flask apps so save, display and search for user profiles.</p>
+{% endblock %}

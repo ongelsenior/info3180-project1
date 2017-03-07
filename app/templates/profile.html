@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block main %}
+<div class='line'>
+    <h1>User Information Form</h1>
+</div>
+<div class="container">
+    {% with messages= get_flashed_messages() %}
+    {% if message %}
+    <div class= "alert alert-danger">
+        <ul>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor%}
+        </ul>  
+    </div>
+        {% endif %}
+    {% endwith %}
+</div>
+<div>
+    <p>Fill in your profile data.</p>
+
+<form method= "GET" action="{{ url_for('home') }}">
+  <b>First Name</b><em class='red'>(Required)</em><br>
+  Please enter your First name.<br><br>
+  <input type="text" name="fname"><br><br>
+  <b>Last Name</b><em class='red'>(Required)</em><br>
+  Please enter your Last Name.<br><br>
+  <input type="text" name="lname"><br><br>
+  <b>Age</b><em class='red'>(Required)</em><br>
+  Please enter your age.<br><br>
+  <input type="text" name="age"><br><br>
+  <b>Gender</b><em class='red'>(Required)</em><br>
+  Please select your gender.<br><br>
+  <input type="radio" name="gender" value="Male" checked >Male<br>
+  <input type="radio" name="gender" value="Female">Female<br><br>
+  <b>Biography</b><br>
+  Please enter a short biography.<br>
+  <textarea name="message" rows="6" cols="50">
+  </textarea><br><br>
+  <b>Profile picture</b><br>
+  Please upload a profile picture.
+  <input type="file" name="picture" accept="image/*"><br>
+  <button type="button" value="send">Send</button>
+</form>
+    
+</div>
+{% endblock %}
