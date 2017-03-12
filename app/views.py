@@ -21,9 +21,9 @@ def home():
 
 @app.route('/profile',methods=["POST","GET"])
 def profile():
-    """Render the website contact page"""
+    """Create a profile"""
     if request.method=="POST":
-        fname=request.form['name']
+        fname=request.form['fname']
         lname=request.form['lname']
         age=request.form['age']
         gender=request.form['gender']
@@ -40,29 +40,9 @@ def profiles():
     return render_template('profiles.html')
 
 @app.route('/profile/<userid>', methods=["GET"])
-def userid():
+def userid(userid):
     """Render the website's find user page."""
     return render_template('userid.html')
-        
-def send_email(from_name, from_email, subject, msg):
-    from_addr= ''
-    to_addr = ''
-    message= """
-    From: {} <{}>
-    To: {}<{}>
-    subject: {}
-    {}
-    """
-    to_name="jay"
-    
-    message_to_send = message.format(from_name, from_addr,to_name, to_addr, subject,msg)
-    username=''
-    password=''
-    server= smtplib.SMTP('smtp.gmail.com:587')
-    server.starttls()
-    server.login(username,password)
-    server.sendmail(from_addr,to_addr,message_to_send)
-    server.quit()    
 
 
 ###
