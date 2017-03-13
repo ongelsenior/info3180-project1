@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 <div class='line'>
-    <h1>User Information Form</h1>
+    <h1>Profile Creation Form</h1>
 </div>
 <div class="container">
     {% with messages= get_flashed_messages() %}
@@ -17,9 +17,12 @@
     {% endwith %}
 </div>
 <div>
-    <p>Fill in your profile data.</p>
+    <p>Fill in your information then click "Create Profile".</p>
 
 <form method= "GET" action="{{ url_for('home') }}">
+  <b>User Name</b><em class='red'>(Required)</em><br>
+  Please enter your username.<br><br>
+  <input type="text" name="username"><br><br>
   <b>First Name</b><em class='red'>(Required)</em><br>
   Please enter your First name.<br><br>
   <input type="text" name="fname"><br><br>
@@ -40,7 +43,7 @@
   <b>Profile picture</b><br>
   Please upload a profile picture.
   <input type="file" name="picture" accept="image/*"><br>
-  <button type="button" value="send">Send</button>
+  <button type="button" value="send">Create profile</button>
 </form>
     
 </div>

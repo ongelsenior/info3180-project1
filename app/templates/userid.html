@@ -1,6 +1,66 @@
 {% extends "base.html" %}
-
+<link rel="stylesheet" href = "../static/css/app.css">
 {% block main %}
-<h1 class="page-header">Search</h1>
-<p>This webpage is about {{ name }} and how he did an amazing project 1.</p>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/profile.css">
+  <br>
+        <header>
+             <h1 class="page-header">{{userprofile['fname']}}'s Profile</h1>
+        </header>
+    
+  <body>
+      
+    <div id ="profilePic">
+      <div id = "pic">
+    <img src="{{userprofile['image']}}" width="260" height="340">
+    
+     
+    <table id ="profileTableID" >
+      <tbody>
+        
+        <tr>
+           <td>
+              <div id ="name">
+              <h1> {{userprofile['fname']}} {{userprofile['lname']}}</h1>
+              </div>
+          </td>
+        </tr>
+        
+    
+        <tr>
+          <td>
+          <div id ="timeinfo">
+            <br>
+          Profile Created On: {{userprofile['date joined']}} 
+          </div>
+          </td>
+        </tr>
+        
+        <tr>
+            <td>
+              <div class ="profile"> 
+              <br>
+              <br>
+              <p> Username: {{userprofile['username']}}</p>
+              <p> User ID: {{userprofile['userid']}}</p>
+              <p> Gender: {{userprofile['gender']}} </p>
+              <p> Age: {{userprofile['age']}}</p>
+              
+              </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+          <div id ="timeinfo">
+            <br>
+          <p>  {{userprofile['message']}} </p> 
+          </div>
+          </td>
+        </tr>
+        <tbody>
+    </table>
+    </div>
+    </div>
+  </body> 
 {% endblock %}

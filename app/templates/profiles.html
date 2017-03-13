@@ -1,24 +1,28 @@
 {% extends "base.html" %}
-{% block css %}
-<link rel="stylesheet" href = "../static/css/app.css">
-{% endblock%}
 
-{% block main %}  
-    <div class="profile">
-      <div class="box"><h1>User Profiles </h1></div>
-      <br>
-      <div><img src="{{ url_for('static', filename='{{profilepic}}') }}"></div>
-      <div><h2>{{fname}} {{lname}}</h2></div>
-      <div class="box"><p>Profile Created On:{{now}}</p></div>
+{% block js %}
+{% endblock %}
 
-      <div class="box">
-        <p>Username: {{username}}</p>
-        <p>User ID: {{userid}}</p>
-        <p>Gender: {{gender}}</p>
-        <p>Age: {{age}}</p>
-        
-        <p>bio</p>
-        <p>{{message}}</p>
-      </div>
-    </div>
+
+{% block main %}
+
+<div style="margin-top:50px;">
+<h1>All Profiles:</h1>
+</div>
+<p>Select the profile you want to view</p>
+<div style="margin-top:35px;"
+<ul>
+{% for user in users %}
+<li>
+<a href="/profile/{{user.id}}" method="post">
+
+{{user.username}}
+{{user.id}}
+</a>
+</li>
+
+{% endfor %}
+</ul>
+</div>
+ 
 {% endblock %}
