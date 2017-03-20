@@ -58,27 +58,33 @@ def profile():
 def profiles():
     """Render the website's list all profiles page."""
     users = db.session.query(UserProfile).all()
-    if request.headers['Content-Type']=='application/json' or request.method == "POST":
+    if (request.method == "POST"):
         ulist=[]
         for user in users:
-            ulist.append({'userid':user.id, 'username':user.username})
+            ulist.append({'userid':user.userid, 'username':user.username})
             users = {'users': ulist}
         return jsonify(users)
+    else:
+        if not profiles:
+            
+            flash('No users have been added yet.')
+            
+            return redirect(url_for('profile'))
                 
     return render_template('profiles.html', users=users)
 
 @app.route('/profile/<userid>', methods=["POST","GET"])
 def userid(userid):
     """Render the website's find a user's page."""
-    users = UserProfile.query.filter_by(userid=userid).first()
+    users = list(UserProfile.query.filter_by(userid=userid).first()
     iURL = url_for('static', filename='images/' +users.picture) 
 
-    if request.headers['Content-Type']=='application/json' or request.method == "POST":
+    if (request.method == "POST"):
         return jsonify(userid=users.userid, username=users.username, picture=users.picture, gender=users.gender, age=users.age, datejoined=users.datejoined)
         
     else:
         
-        userp = {'userid':users.id, 'username':users.username, 'picture':iURL, 'age':users.age, 'fname':users.fname, 'lname':users.lname, 'gender':users.gender, 'message':users.message, 'date joined':users.datejoined}
+        userp = {'userid':users.userid, 'username':users.username, 'picture':iURL, 'age':users.age, 'fname':users.fname, 'lname':users.lname, 'gender':users.gender, 'message':users.message, 'date joined':users.datejoined}
         return render_template('userid.html', userp=userp)
 
 
